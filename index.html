@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Converter</title>
+</head>
+
+<body>
+    <h1>GPA Converter</h1>
+
+    <div>
+        <label for="inputGPA">Enter GPA:</label>
+        <input type="number" id="inputGPA" step="0.01" placeholder="e.g. 3.5">
+        <select id="inputScale">
+            <option value="4">4.0 Scale</option>
+            <option value="10">10.0 Scale</option>
+        </select>
+        <button onclick="convertGPA()">Convert</button>
+    </div>
+
+    <div>
+        <h2>Result:</h2>
+        <p id="outputGPA">Converted GPA will appear here.</p>
+    </div>
+
+    <script>
+        function convertGPA() {
+            const gpaValue = parseFloat(document.getElementById('inputGPA').value);
+            const scaleValue = document.getElementById('inputScale').value;
+
+            let convertedGPA;
+
+            if (isNaN(gpaValue)) {
+                alert('Please enter a valid GPA.');
+                return;
+            }
+
+            if (scaleValue === '4') {
+                // Convert from 4.0 scale to 10.0 scale
+                convertedGPA = (gpaValue / 4) * 10;
+            } else {
+                // Convert from 10.0 scale to 4.0 scale
+                convertedGPA = (gpaValue / 10) * 4;
+            }
+
+            // Round the result to two decimal places
+            convertedGPA = Math.round(convertedGPA * 100) / 100;
+
+            document.getElementById('outputGPA').textContent = "Converted GPA: " + convertedGPA;
+        }
+    </script>
+</body>
+
+</html>
